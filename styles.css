@@ -1,10 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
 #boxContainer {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+}
+
+.boxStyle:nth-child(17n + 1) {
+  width: 100%;
+  border: 0;
+  height: 0;
 }
 
 .boxStyle {
   border: 1px solid black;
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
 }
