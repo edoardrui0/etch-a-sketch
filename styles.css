@@ -6,16 +6,12 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  width: 360px;
+  margin: auto;
+  border: 1px solid red;
 }
 
-.boxStyle:nth-child(17n + 1) {
-  width: 100%;
-  border: 0;
-  height: 0;
-}
-
-.boxStyle {
-  border: 1px solid black;
-  width: 25px;
-  height: 25px;
+.btn {
+  width: 20px;
+  height: 20px;
 }
