@@ -2,16 +2,26 @@
   box-sizing: border-box;
 }
 
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 #boxContainer {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 360px;
+  width: 500px;
+  height: 500px;
   margin: auto;
-  border: 1px solid red;
 }
 
 .btn {
   width: 20px;
   height: 20px;
+}
+
+body {
+  background-color: rgb(145, 145, 145);
 }
