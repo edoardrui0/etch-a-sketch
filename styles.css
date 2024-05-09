@@ -2,19 +2,25 @@
   box-sizing: border-box;
 }
 
-.pageContainer {
+h1 {
+  margin-bottom: 50px;
+}
+
+#pageContainer {
+  text-align: center;
+}
+
+#test {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 #boxContainer {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 500px;
-  height: 500px;
-  margin: auto;
+  width: 750px;
+  height: 750px;
 }
 
 .btn {
