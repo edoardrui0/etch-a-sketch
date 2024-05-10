@@ -10,9 +10,20 @@ h1 {
   text-align: center;
 }
 
-#test {
+#contentContainer {
   display: flex;
   justify-content: space-evenly;
+}
+
+#controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#btnContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 #boxContainer {
@@ -21,11 +32,6 @@ h1 {
   flex-wrap: wrap;
   width: 750px;
   height: 750px;
-}
-
-.btn {
-  width: 20px;
-  height: 20px;
 }
 
 body {
