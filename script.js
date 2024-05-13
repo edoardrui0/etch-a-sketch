@@ -17,6 +17,11 @@ redBtn.classList.add(`redBtn`);
 redBtn.textContent = `Red`;
 controls.appendChild(redBtn);
 
+const clearBtn = document.createElement(`button`);
+clearBtn.classList.add(`clearBtn`);
+clearBtn.textContent = `Clear`;
+controls.appendChild(clearBtn);
+
 const createBoxes = (value) => {
   const boxes = document.createElement("div");
   let size = 750 / value;
@@ -28,15 +33,25 @@ const createBoxes = (value) => {
 
   for (let i = 0; i < value * value; i++) {
     const etch_box = boxes.cloneNode(true);
+    console.log(etch_box);
+
+    // this eventListener creates black boxes
     etch_box.addEventListener("mouseover", (event) => {
       event.target.style.background = "black";
     });
     boxContainer.appendChild(etch_box);
 
+    // this eventListener clears the current boxes and then creates red boxes upon mouseover
     redBtn.addEventListener("click", () => {
+      etch_box.style.backgroundColor = "white";
       etch_box.addEventListener("mouseover", (event) => {
         event.target.style.background = "red";
       });
+    });
+
+    // this eventListener completely clears the boxes, regardless of color
+    clearBtn.addEventListener("click", () => {
+      etch_box.style.backgroundColor = "white";
     });
   }
 };
