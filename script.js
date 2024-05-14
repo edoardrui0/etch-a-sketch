@@ -8,19 +8,34 @@ btn.classList.add("btn");
 btn.textContent = "Enter";
 
 const btnContainer = document.querySelector("#btnContainer");
+const colorBtnContainer = document.querySelector(`#colorBtnContainer`);
 
 inputContainer.appendChild(input);
 inputContainer.appendChild(btn);
 
+const blackBtn = document.createElement("button");
+blackBtn.textContent = `Black`;
+colorBtnContainer.appendChild(blackBtn);
+
 const redBtn = document.createElement("button");
-redBtn.classList.add(`redBtn`);
 redBtn.textContent = `Red`;
-controls.appendChild(redBtn);
+colorBtnContainer.appendChild(redBtn);
+
+const blueBtn = document.createElement("button");
+blueBtn.textContent = `Blue`;
+colorBtnContainer.appendChild(blueBtn);
+
+const pinkBtn = document.createElement("button");
+pinkBtn.textContent = `Pink`;
+colorBtnContainer.appendChild(pinkBtn);
+
+const rainbowBtn = document.createElement(`button`);
+rainbowBtn.textContent = `Rainbow`;
+colorBtnContainer.appendChild(rainbowBtn);
 
 const clearBtn = document.createElement(`button`);
-clearBtn.classList.add(`clearBtn`);
 clearBtn.textContent = `Clear`;
-controls.appendChild(clearBtn);
+colorBtnContainer.appendChild(clearBtn);
 
 const createBoxes = (value) => {
   const boxes = document.createElement("div");
@@ -33,7 +48,6 @@ const createBoxes = (value) => {
 
   for (let i = 0; i < value * value; i++) {
     const etch_box = boxes.cloneNode(true);
-    console.log(etch_box);
 
     // this eventListener creates black boxes
     etch_box.addEventListener("mouseover", (event) => {
@@ -41,11 +55,44 @@ const createBoxes = (value) => {
     });
     boxContainer.appendChild(etch_box);
 
-    // this eventListener clears the current boxes and then creates red boxes upon mouseover
+    blackBtn.addEventListener("click", () => {
+      if (etch_box.style.backgroundColor !== "black") {
+        etch_box.style.backgroundColor = "white";
+      }
+
+      etch_box.addEventListener("mouseover", (event) => {
+        event.target.style.background = "black";
+      });
+    });
+
+    // this eventListener clears the current boxes, if not red, and then creates red boxes upon mouseover
     redBtn.addEventListener("click", () => {
-      etch_box.style.backgroundColor = "white";
+      if (etch_box.style.backgroundColor !== "red") {
+        etch_box.style.backgroundColor = "white";
+      }
+
       etch_box.addEventListener("mouseover", (event) => {
         event.target.style.background = "red";
+      });
+    });
+
+    blueBtn.addEventListener("click", () => {
+      if (etch_box.style.backgroundColor !== "blue") {
+        etch_box.style.backgroundColor = "white";
+      }
+
+      etch_box.addEventListener("mouseover", (event) => {
+        event.target.style.background = "blue";
+      });
+    });
+
+    pinkBtn.addEventListener("click", () => {
+      if (etch_box.style.backgroundColor !== "pink") {
+        etch_box.style.backgroundColor = "white";
+      }
+
+      etch_box.addEventListener("mouseover", (event) => {
+        event.target.style.background = "pink";
       });
     });
 
@@ -53,8 +100,31 @@ const createBoxes = (value) => {
     clearBtn.addEventListener("click", () => {
       etch_box.style.backgroundColor = "white";
     });
+
+    rainbowBtn.addEventListener(`click`, () => {
+      etch_box.style.backgroundColor = "white";
+      etch_box.addEventListener(`mouseover`, (event) => {
+        event.target.style.background = randomColor();
+      });
+    });
   }
 };
+
+// credit to https://gist.github.com/bendc/76c48ce53299e6078a76 for this code
+const randomColor = (() => {
+  "use strict";
+
+  const randomInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  return () => {
+    var h = randomInt(0, 360);
+    var s = randomInt(42, 98);
+    var l = randomInt(40, 90);
+    return `hsl(${h},${s}%,${l}%)`;
+  };
+})();
 
 const createGrid = () => {
   btn.addEventListener("click", () => {
@@ -84,10 +154,8 @@ const createGridButton = (size) => {
   });
 };
 
-// selectGridColor();
-
 const gridBtnSizes = [2, 4, 8, 16, 32, 64];
 gridBtnSizes.forEach((size) => createGridButton(size));
 
-createBoxes(10);
+createBoxes(5);
 createGrid();

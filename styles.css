@@ -21,7 +21,8 @@ h1 {
   justify-content: space-evenly;
 }
 
-#btnContainer {
+#btnContainer,
+#colorBtnContainer {
   display: flex;
   flex-direction: column;
 }
