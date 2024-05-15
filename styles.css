@@ -19,12 +19,20 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  /* font-size: ; */
 }
 
 #btnContainer,
 #colorBtnContainer {
   display: flex;
   flex-direction: column;
+}
+
+#btnContainer > button,
+#colorBtnContainer > button {
+  font-size: 20px;
+  padding: 4px;
+  margin-bottom: 2px;
 }
 
 #boxContainer {
@@ -36,5 +44,23 @@ h1 {
 }
 
 body {
-  background-color: rgb(145, 145, 145);
+  background-color: rgb(119 149 179);
+}
+
+.inputLabel {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+#inputContainer > input {
+  width: 100%;
+  margin-top: 10px;
+  height: 30px;
+}
+
+#inputContainer > button {
+  margin-top: 5px;
+  font-size: 18px;
+  padding: 5px 15px;
 }

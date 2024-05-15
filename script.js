@@ -2,7 +2,11 @@ const boxContainer = document.querySelector("#boxContainer");
 
 const controls = document.querySelector(`#controls`);
 const inputContainer = document.querySelector("#inputContainer");
+const inputLabel = document.createElement("p");
+inputLabel.textContent = "Type a number to create a grid";
+inputLabel.classList.add("inputLabel");
 const input = document.createElement("input");
+input.setAttribute("name", "input");
 const btn = document.createElement("button");
 btn.classList.add("btn");
 btn.textContent = "Enter";
@@ -10,6 +14,7 @@ btn.textContent = "Enter";
 const btnContainer = document.querySelector("#btnContainer");
 const colorBtnContainer = document.querySelector(`#colorBtnContainer`);
 
+inputContainer.appendChild(inputLabel);
 inputContainer.appendChild(input);
 inputContainer.appendChild(btn);
 
@@ -25,9 +30,9 @@ const blueBtn = document.createElement("button");
 blueBtn.textContent = `Blue`;
 colorBtnContainer.appendChild(blueBtn);
 
-const pinkBtn = document.createElement("button");
-pinkBtn.textContent = `Pink`;
-colorBtnContainer.appendChild(pinkBtn);
+const greenBtn = document.createElement("button");
+greenBtn.textContent = `Green`;
+colorBtnContainer.appendChild(greenBtn);
 
 const rainbowBtn = document.createElement(`button`);
 rainbowBtn.textContent = `Rainbow`;
@@ -91,8 +96,8 @@ blueBtn.addEventListener("click", () => {
   applyColor("blue");
 });
 
-pinkBtn.addEventListener("click", () => {
-  applyColor("pink");
+greenBtn.addEventListener("click", () => {
+  applyColor("green");
 });
 
 clearBtn.addEventListener("click", () => {
@@ -113,14 +118,19 @@ rainbowBtn.addEventListener("click", () => {
 
 const createGrid = () => {
   btn.addEventListener("click", () => {
+    let value = parseInt(input.value);
+
     if (input.value > 100) {
       alert("The input must be 100 or less!");
       input.value = "";
     } else {
-      boxContainer.textContent = "";
-      let value = parseInt(input.value);
       input.value = "";
       createBoxes(value);
+    }
+
+    if (isNaN(value)) {
+      alert("Must input a number");
+      createBoxes(16);
     }
   });
 };
@@ -142,5 +152,5 @@ const createGridButton = (size) => {
 const gridBtnSizes = [2, 4, 8, 16, 32, 64];
 gridBtnSizes.forEach((size) => createGridButton(size));
 
-createBoxes(5);
+createBoxes(16);
 createGrid();
