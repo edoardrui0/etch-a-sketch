@@ -38,75 +38,16 @@ clearBtn.textContent = `Clear`;
 colorBtnContainer.appendChild(clearBtn);
 
 const createBoxes = (value) => {
-  const boxes = document.createElement("div");
-  let size = 750 / value;
-  boxes.style.height = size + "px";
-  boxes.style.width = size + "px";
-  boxes.style.backgroundColor = "white";
-  boxes.style.border = "0.5px solid black";
-  // boxes.style.opacity = "0";
-
+  boxContainer.textContent = ""; // Clear existing boxes
+  const size = 750 / value;
   for (let i = 0; i < value * value; i++) {
-    const etch_box = boxes.cloneNode(true);
-
-    // this eventListener creates black boxes
-    etch_box.addEventListener("mouseover", (event) => {
-      event.target.style.background = "black";
-    });
+    const etch_box = document.createElement("div");
+    etch_box.classList.add("etch-box");
+    etch_box.style.height = size + "px";
+    etch_box.style.width = size + "px";
+    etch_box.style.backgroundColor = "white";
+    etch_box.style.border = "0.5px solid black";
     boxContainer.appendChild(etch_box);
-
-    blackBtn.addEventListener("click", () => {
-      if (etch_box.style.backgroundColor !== "black") {
-        etch_box.style.backgroundColor = "white";
-      }
-
-      etch_box.addEventListener("mouseover", (event) => {
-        event.target.style.background = "black";
-      });
-    });
-
-    // this eventListener clears the current boxes, if not red, and then creates red boxes upon mouseover
-    redBtn.addEventListener("click", () => {
-      if (etch_box.style.backgroundColor !== "red") {
-        etch_box.style.backgroundColor = "white";
-      }
-
-      etch_box.addEventListener("mouseover", (event) => {
-        event.target.style.background = "red";
-      });
-    });
-
-    blueBtn.addEventListener("click", () => {
-      if (etch_box.style.backgroundColor !== "blue") {
-        etch_box.style.backgroundColor = "white";
-      }
-
-      etch_box.addEventListener("mouseover", (event) => {
-        event.target.style.background = "blue";
-      });
-    });
-
-    pinkBtn.addEventListener("click", () => {
-      if (etch_box.style.backgroundColor !== "pink") {
-        etch_box.style.backgroundColor = "white";
-      }
-
-      etch_box.addEventListener("mouseover", (event) => {
-        event.target.style.background = "pink";
-      });
-    });
-
-    // this eventListener completely clears the boxes, regardless of color
-    clearBtn.addEventListener("click", () => {
-      etch_box.style.backgroundColor = "white";
-    });
-
-    rainbowBtn.addEventListener(`click`, () => {
-      etch_box.style.backgroundColor = "white";
-      etch_box.addEventListener(`mouseover`, (event) => {
-        event.target.style.background = randomColor();
-      });
-    });
   }
 };
 
@@ -125,6 +66,50 @@ const randomColor = (() => {
     return `hsl(${h},${s}%,${l}%)`;
   };
 })();
+
+const applyColor = (color) => {
+  const boxes = document.querySelectorAll(".etch-box");
+  boxes.forEach((box) => {
+    if (box.style.backgroundColor !== color) {
+      box.style.backgroundColor = "white";
+    }
+    box.addEventListener("mouseover", () => {
+      box.style.backgroundColor = color;
+    });
+  });
+};
+
+blackBtn.addEventListener("click", () => {
+  applyColor("black");
+});
+
+redBtn.addEventListener("click", () => {
+  applyColor("red");
+});
+
+blueBtn.addEventListener("click", () => {
+  applyColor("blue");
+});
+
+pinkBtn.addEventListener("click", () => {
+  applyColor("pink");
+});
+
+clearBtn.addEventListener("click", () => {
+  applyColor("white");
+});
+
+rainbowBtn.addEventListener("click", () => {
+  const boxes = document.querySelectorAll(".etch-box");
+  boxes.forEach((box) => {
+    if (box.style.backgroundColor !== "white") {
+      box.style.backgroundColor = "white";
+    }
+    box.addEventListener("mouseover", () => {
+      box.style.backgroundColor = randomColor();
+    });
+  });
+});
 
 const createGrid = () => {
   btn.addEventListener("click", () => {
